@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BooksStore.Models.StockSaldo>
+
+@{
+    ViewBag.Title = "Stock List";
+}
+
+<h2>Stock List</h2>
+
+<p>
+    @Html.ActionLink("Add New Stock Item", "Add", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>Store ID</th>
+        <th>ISBN</th>
+        <th>Number</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var stockItem in Model)
+    {
+        <tr>
+            <td>@stockItem.StoreID</td>
+            <td>@stockItem.ISBN</td>
+            <td>@stockItem.Number</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { storeId = stockItem.StoreID, isbn = stockItem.ISBN }) |
+                @Html.ActionLink("Delete", "Delete", new { storeId = stockItem.StoreID, isbn = stockItem.ISBN })
+            </td>
+        </tr>
+    }
+</table>

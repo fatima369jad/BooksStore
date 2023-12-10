@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BooksStore.Models.Books>
+
+@{
+    ViewBag.Title = "Book List";
+}
+
+<h2>Book List</h2>
+
+<p>
+    @Html.ActionLink("Add New Book", "Add", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Language</th>
+        <th>Price</th>
+        <th>Release Date</th>
+        <th>Author</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.ISBN13</td>
+            <td>@book.Title</td>
+            <td>@book.Language</td>
+            <td>@book.Price</td>
+            <td>@book.ReleaseDate.ToShortDateString()</td>
+            <td>@book.AuthorID</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = book.ISBN13 }) |
+                @Html.ActionLink("Delete", "Delete", new { id = book.ISBN13 })
+            </td>
+        </tr>
+    }
+</table>
